@@ -1,9 +1,10 @@
 import { useSignal } from "@preact/signals";
 import { useEffect, useRef } from "preact/hooks";
+import { JSX } from "preact";
 
 interface TerminalOutput {
   command: string;
-  output: string;
+  output: string | JSX.Element;
   timestamp: Date;
 }
 
@@ -52,10 +53,7 @@ export default function Terminal() {
     },
     {
       command: "help",
-      output: "Available commands:\n" + 
-        Object.entries(COMMANDS)
-          .map(([cmd, desc]) => `  ${cmd.padEnd(12)} - ${desc}`)
-          .join("\n"),
+      output: renderHelpCommand(),
       timestamp: new Date()
     }
   ]);
@@ -64,6 +62,59 @@ export default function Terminal() {
   const commandHistory = useSignal<string[]>([]);
   const historyIndex = useSignal(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  function renderHelpCommand() {
+    return (
+      <div>
+        <div>Available commands:</div>
+        {Object.entries(COMMANDS).map(([cmd, desc]) => (
+          <div key={cmd} className="help-command-line">
+            <span 
+              className="clickable-command"
+              onClick={() => executeCommand(cmd)}
+              style={{
+                color: "#4CAF50",
+                cursor: "pointer",
+                textDecoration: "underline",
+                marginRight: "8px",
+                minWidth: "96px",
+                display: "inline-block"
+              }}
+            >
+              {cmd}
+            </span>
+            <span> - {desc}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function renderContactCommand() {
+    return (
+      <div>
+        <div>Contact Information:</div>
+        <br />
+        <div>📧 Email: <a 
+          href="mailto:hi@terrydjony.com" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank"
+        >hi@terrydjony.com</a></div>
+        <div>🐙 GitHub:    <a 
+          href="https://github.com/terryds" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://github.com/terryds</a></div>
+        <div>🐦 Twitter:   <a 
+          href="https://x.com/Terry_Djony" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://x.com/Terry_Djony</a></div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     // Focus input on load
@@ -86,10 +137,7 @@ export default function Terminal() {
           },
           {
             command: "help",
-            output: "Available commands:\n" + 
-              Object.entries(COMMANDS)
-                .map(([cmd, desc]) => `  ${cmd.padEnd(12)} - ${desc}`)
-                .join("\n"),
+            output: renderHelpCommand(),
             timestamp: new Date()
           }
         ];
@@ -117,14 +165,11 @@ export default function Terminal() {
       commandHistory.value = [...commandHistory.value, trimmedCmd];
     }
 
-    let result = "";
+    let result: string | JSX.Element = "";
 
     switch (command.toLowerCase()) {
       case "help":
-        result = "Available commands:\n" + 
-          Object.entries(COMMANDS)
-            .map(([cmd, desc]) => `  ${cmd.padEnd(12)} - ${desc}`)
-            .join("\n");
+        result = renderHelpCommand();
         break;
 
       case "about":
@@ -137,8 +182,6 @@ export default function Terminal() {
 🚀 Building in SaaS & AI
 `;
         break;
-
-
 
       case "projects":
         result = `My Projects:
@@ -174,12 +217,7 @@ export default function Terminal() {
         break;
 
       case "contact":
-        result = `Contact Information:
-
-📧 Email: hi@terrydjony.com
-🐙 GitHub:    https://github.com/terryds
-🐦 Twitter:   https://x.com/Terry_Djony
-`;
+        result = renderContactCommand();
         break;
 
       case "whoami":
@@ -189,8 +227,6 @@ export default function Terminal() {
       case "date":
         result = new Date().toString();
         break;
-
-
 
       case "ls":
         result = `about  projects  contact`;
@@ -209,10 +245,7 @@ export default function Terminal() {
           },
           {
             command: "help",
-            output: "Available commands:\n" + 
-              Object.entries(COMMANDS)
-                .map(([cmd, desc]) => `  ${cmd.padEnd(12)} - ${desc}`)
-                .join("\n"),
+            output: renderHelpCommand(),
             timestamp: new Date()
           }
         ];
@@ -223,8 +256,6 @@ export default function Terminal() {
           .map((cmd: string, i: number) => `${(i + 1).toString().padStart(3)} ${cmd}`)
           .join("\n");
         break;
-
-
 
       case "neofetch":
         result = `                    terry-djony@indonesia
@@ -329,7 +360,13 @@ export default function Terminal() {
               </div>
             )}
             {item.output && (
-              <pre className="output">{item.output}</pre>
+              <div className="output">
+                {typeof item.output === "string" ? (
+                  <pre>{item.output}</pre>
+                ) : (
+                  item.output
+                )}
+              </div>
             )}
           </div>
         ))}
