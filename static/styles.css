@@ -1,0 +1,259 @@
+/* Terminal Portfolio Styles */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background: #0a0a0a;
+  color: #00ff00;
+  overflow-x: hidden;
+  line-height: 1.4;
+}
+
+/* Terminal Container */
+.terminal-container {
+  background: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
+  margin: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+}
+
+/* Terminal Header */
+.terminal-header {
+  background: #2a2a2a;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-button.close {
+  background: #ff5f56;
+}
+
+.terminal-button.minimize {
+  background: #ffbd2e;
+}
+
+.terminal-button.maximize {
+  background: #27ca3f;
+}
+
+.terminal-title {
+  margin-left: auto;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Terminal Body */
+.terminal-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #0a0a0a;
+  border-radius: 0 0 8px 8px;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+}
+
+.command-line {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.prompt {
+  color: #00ff00;
+  font-weight: 500;
+  user-select: none;
+}
+
+.command {
+  color: #ffffff;
+  margin-left: 4px;
+}
+
+.output {
+  color: #cccccc;
+  white-space: pre-wrap;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+/* Input Line */
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  outline: none;
+  flex: 1;
+  margin-left: 4px;
+  caret-color: #00ff00;
+}
+
+.terminal-input::selection {
+  background: #00ff0030;
+}
+
+/* Scrollbar */
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ASCII Art styling */
+.output {
+  font-size: 12px;
+}
+
+/* Special command output styling */
+.output:has(+ .command-line .command:contains("neofetch")),
+.output:contains("terry@portfolio") {
+  color: #00ff00;
+}
+
+/* Progress bars in skills */
+.output:contains("████") {
+  font-family: monospace;
+}
+
+/* Links in contact info */
+.output:contains("@") {
+  color: #66d9ef;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .terminal-container {
+    margin: 10px;
+    height: calc(100vh - 20px);
+    border-radius: 0;
+  }
+  
+  .terminal-header {
+    padding: 10px 15px;
+  }
+  
+  .terminal-body {
+    padding: 15px;
+  }
+  
+  .output {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-body {
+    padding: 10px;
+  }
+  
+  .output {
+    font-size: 11px;
+  }
+  
+  .terminal-title {
+    display: none;
+  }
+}
+
+/* Animation for typing effect */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-input::after {
+  content: '';
+  background: #00ff00;
+  width: 8px;
+  height: 16px;
+  position: absolute;
+  animation: blink 1s infinite;
+}
+
+/* Glow effects */
+.terminal-container {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.1),
+    inset 0 0 20px rgba(0, 255, 0, 0.05);
+}
+
+.prompt {
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* Welcome message styling */
+.output:first-child {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff0050;
+}
+
+/* Error message styling */
+.output:contains("Command not found"),
+.output:contains("No such file") {
+  color: #ff6b6b;
+}
+
+/* Success message styling */
+.output:contains("Welcome"),
+.output:contains("Available commands") {
+  color: #51cf66;
+}
+
+/* Code blocks */
+.output:contains("```") {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px 0;
+}
