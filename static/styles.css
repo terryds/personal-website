@@ -27,6 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid #333;
+  overflow: hidden; /* Prevent horizontal scroll */
 }
 
 /* Terminal Header */
@@ -73,28 +74,35 @@ body {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
   background: #0a0a0a;
   border-radius: 0 0 8px 8px;
+  word-wrap: break-word; /* Force word wrapping */
 }
 
 .terminal-line {
   margin-bottom: 8px;
+  word-wrap: break-word; /* Ensure lines wrap */
+  overflow-wrap: break-word; /* Modern CSS property */
 }
 
 .command-line {
   display: flex;
   margin-bottom: 4px;
+  flex-wrap: wrap; /* Allow wrapping if needed */
 }
 
 .prompt {
   color: #00ff00;
   font-weight: 500;
   user-select: none;
+  flex-shrink: 0; /* Don't shrink the prompt */
 }
 
 .command {
   color: #ffffff;
   margin-left: 4px;
+  word-break: break-all; /* Break long commands if needed */
 }
 
 .output {
@@ -107,12 +115,23 @@ body {
   padding: 0;
   background: none;
   border: none;
+  word-wrap: break-word; /* Force word wrapping */
+  overflow-wrap: break-word; /* Modern CSS property */
+  max-width: 100%; /* Ensure it doesn't exceed container */
+}
+
+.output pre {
+  white-space: pre-wrap; /* Preserve formatting but allow wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 /* Input Line */
 .input-line {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Allow wrapping if needed */
 }
 
 .terminal-input {
@@ -125,6 +144,7 @@ body {
   flex: 1;
   margin-left: 4px;
   caret-color: #00ff00;
+  min-width: 0; /* Allow input to shrink */
 }
 
 .terminal-input::selection {
@@ -176,32 +196,60 @@ body {
     margin: 10px;
     height: calc(100vh - 20px);
     border-radius: 0;
+    overflow: hidden; /* Prevent horizontal scroll */
   }
   
   .terminal-header {
     padding: 10px 15px;
+    overflow: hidden; /* Prevent header overflow */
   }
   
   .terminal-body {
     padding: 15px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   .output {
     font-size: 12px;
+    word-break: break-all; /* More aggressive word breaking on mobile */
+  }
+  
+  .output pre {
+    font-size: 10px; /* Smaller font for ASCII art on mobile */
+    overflow-x: auto; /* Allow horizontal scroll only for ASCII art */
+    overflow-y: hidden;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .terminal-body {
     padding: 10px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   .output {
     font-size: 11px;
+    word-break: break-all; /* More aggressive word breaking */
+  }
+  
+  .output pre {
+    font-size: 9px; /* Even smaller font for ASCII art */
+    white-space: pre-wrap; /* Allow ASCII art to wrap */
   }
   
   .terminal-title {
     display: none;
+  }
+  
+  /* Make command line more mobile-friendly */
+  .command-line {
+    flex-direction: column; /* Stack prompt and command on mobile if needed */
+  }
+  
+  .command {
+    margin-left: 0; /* Remove margin when stacked */
+    word-break: break-all;
   }
 }
 

@@ -71,7 +71,11 @@ export default function Terminal() {
           <div key={cmd} className="help-command-line">
             <span 
               className="clickable-command"
-              onClick={() => executeCommand(cmd)}
+              onClick={() => {
+                executeCommand(cmd);
+                // Ensure scrolling happens after command execution and DOM update
+                setTimeout(() => scrollToBottom(), 100);
+              }}
               style={{
                 color: "#4CAF50",
                 cursor: "pointer",
@@ -326,12 +330,18 @@ export default function Terminal() {
   };
 
   const scrollToBottom = () => {
-    setTimeout(() => {
-      const terminal = document.getElementById("terminal-container");
-      if (terminal) {
-        terminal.scrollTop = terminal.scrollHeight;
-      }
-    }, 10);
+    // Target the terminal-body which is the actual scrollable container
+    const terminalBody = document.querySelector('.terminal-body') as HTMLElement;
+    if (terminalBody) {
+      // Use multiple methods to ensure scrolling works
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+      
+      // Also try smooth scrolling as a fallback
+      terminalBody.scrollTo({
+        top: terminalBody.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Scroll to bottom when output changes
