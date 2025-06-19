@@ -183,7 +183,7 @@ export default function Terminal() {
         break;
 
       case "whoami":
-        result = "guest@terry-djony-portfolio:~$";
+        result = "guest@terrydjony:~$";
         break;
 
       case "date":
@@ -324,7 +324,7 @@ export default function Terminal() {
           <div key={index} className="terminal-line">
             {item.command && item.command !== "init" && (
               <div className="command-line">
-                <span className="prompt">guest@terry-djony-portfolio:~$ </span>
+                <span className="prompt">guest@terrydjony:~$ </span>
                 <span className="command">{item.command}</span>
               </div>
             )}
@@ -335,7 +335,7 @@ export default function Terminal() {
         ))}
         
         <div className="terminal-line input-line">
-          <span className="prompt">guest@terry-djony-portfolio:~$ </span>
+          <span className="prompt">guest@terrydjony:~$ </span>
           <input
             ref={inputRef}
             type="text"
