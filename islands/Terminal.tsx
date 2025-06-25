@@ -333,10 +333,7 @@ export default function Terminal() {
     // Target the terminal-body which is the actual scrollable container
     const terminalBody = document.querySelector('.terminal-body') as HTMLElement;
     if (terminalBody) {
-      // Use multiple methods to ensure scrolling works
-      terminalBody.scrollTop = terminalBody.scrollHeight;
-      
-      // Also try smooth scrolling as a fallback
+      // Use smooth scrolling with animation
       terminalBody.scrollTo({
         top: terminalBody.scrollHeight,
         behavior: 'smooth'

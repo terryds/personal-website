@@ -78,6 +78,8 @@ body {
   background: #0a0a0a;
   border-radius: 0 0 8px 8px;
   word-wrap: break-word; /* Force word wrapping */
+  scroll-behavior: smooth; /* Smooth scrolling animation */
+  transition: all 0.3s ease; /* Smooth transitions */
 }
 
 .terminal-line {
@@ -154,19 +156,27 @@ body {
 /* Scrollbar */
 .terminal-body::-webkit-scrollbar {
   width: 8px;
+  transition: width 0.2s ease;
+}
+
+.terminal-body::-webkit-scrollbar:hover {
+  width: 10px;
 }
 
 .terminal-body::-webkit-scrollbar-track {
   background: #1a1a1a;
+  border-radius: 4px;
 }
 
 .terminal-body::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
 .terminal-body::-webkit-scrollbar-thumb:hover {
   background: #555;
+  box-shadow: 0 0 6px rgba(0, 255, 0, 0.3);
 }
 
 /* ASCII Art styling */
