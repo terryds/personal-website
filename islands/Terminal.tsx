@@ -125,6 +125,25 @@ export default function Terminal() {
       <div>
         <div>My Projects:</div>
         <br />
+        <div style={{
+          border: "1px solid #FFA500",
+          borderRadius: "4px",
+          padding: "8px 12px",
+          backgroundColor: "rgba(255, 165, 0, 0.1)",
+          marginBottom: "16px",
+          fontSize: "13px"
+        }}>
+          <div style={{color: "#FFA500", fontWeight: "bold"}}>⚠️  NOTICE</div>
+          <div style={{color: "#FFD700", marginTop: "4px"}}>
+            Not all projects are listed here. Some are kept private for
+          </div>
+          <div style={{color: "#FFD700"}}>
+            business reasons, client confidentiality, or ongoing development.
+          </div>
+          <div style={{color: "#FFD700"}}>
+            The portfolio below represents publicly available work only.
+          </div>
+        </div>
         <div>🤖 FirstSupport.ai (2024) : <a 
           href="https://firstsupport.ai/" 
           style={{color: "#4CAF50", textDecoration: "underline"}}
