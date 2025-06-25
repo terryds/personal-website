@@ -138,7 +138,7 @@ export default function Terminal() {
             Not all projects are listed here. Some are kept private for
           </div>
           <div style={{color: "#FFD700"}}>
-            business reasons, client confidentiality, or ongoing development.
+            business reasons.
           </div>
           <div style={{color: "#FFD700"}}>
             The portfolio below represents publicly available work only.
