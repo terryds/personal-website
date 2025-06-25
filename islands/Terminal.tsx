@@ -120,6 +120,77 @@ export default function Terminal() {
     );
   }
 
+  function renderProjectsCommand() {
+    return (
+      <div>
+        <div>My Projects:</div>
+        <br />
+        <div>🤖 FirstSupport.ai (2024) : <a 
+          href="https://firstsupport.ai/" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://firstsupport.ai/</a></div>
+        <div>   └── QA Automation for Customer Support</div>
+        <div>   └── AI-powered customer service automation</div>
+        <br />
+        <div>💬 Chatbiz (2021) : <a 
+          href="https://chatbiz.id" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://chatbiz.id</a></div>
+        <div>   └── WhatsApp Chatbot Builder for Indonesia</div>
+        <div>   └── Serving millions of chats per month</div>
+        <div>   └── Used by telco, FMCG, hospitals, and more</div>
+        <br />
+        <div>🧪 SnipSolve AI (2024) : <a 
+          href="https://chromewebstore.google.com/detail/snipsolve-ai-screenshot-q/fjehagceeddnbhaegakpeogackjfplhh?hl=en" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >Chrome Web Store</a></div>
+        <div>   └── Chrome Extension with AI + Snipping Tool</div>
+        <div>   └── Solve questions easily with built-in AI</div>
+        <br />
+        <div>⏺️ Recordscript (2024) : <a 
+          href="https://recordscript.com/" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://recordscript.com/</a></div>
+        <div>   └── Open-source video recorder + transcriber</div>
+        <div>   └── Built with Rust & WhisperCpp</div>
+        <br />
+        <div>📊 GPT Sheets Plus (2024) : <a 
+          href="https://workspace.google.com/marketplace/app/gptsheets_plus_for_google_sheets/317467506042" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >Google Workspace</a></div>
+        <div>   └── Formula add-on for Google Sheets</div>
+        <div>   └── Integrates Perplexity, OpenAI GPT, and more</div>
+        <br />
+        <div>📹 YouTube Video Transcripts (2025): <a 
+          href="https://youtubevideotranscripts.com/" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://youtubevideotranscripts.com/</a></div>
+        <div>   └── Video Transcripts & Caption Plus extensions</div>
+        <div>   └── AI chat about video content</div>
+        <br />
+        <div>🕸️ dTON Explorer (2025): <a 
+          href="https://explorer.awesometon.xyz/" 
+          style={{color: "#4CAF50", textDecoration: "underline"}}
+          target="_blank" 
+          rel="noopener noreferrer"
+        >https://explorer.awesometon.xyz/</a></div>
+        <div>   └── TON Blockchain Query & Data Explorer</div>
+      </div>
+    );
+  }
+
   useEffect(() => {
     // Focus input on load
     if (inputRef.current) {
@@ -188,36 +259,7 @@ export default function Terminal() {
         break;
 
       case "projects":
-        result = `My Projects:
-
-🤖 FirstSupport.ai (2024)
-   └── QA Automation for Customer Support
-   └── AI-powered customer service automation
-
-💬 Chatbiz (2021)
-   └── WhatsApp Chatbot Builder for Indonesia
-   └── Serving millions of chats per month
-   └── Used by telco, FMCG, hospitals, and more
-
-🧪 SnipSolve AI (2024)
-   └── Chrome Extension with AI + Snipping Tool
-   └── Solve questions easily with built-in AI
-
-⏺️ Recordscript (2024)
-   └── Open-source video recorder + transcriber
-   └── Built with Rust & WhisperCpp
-
-📊 GPT Sheets Plus (2024)
-   └── Formula add-on for Google Sheets
-   └── Integrates Perplexity, OpenAI GPT, and more
-
-📹 YouTube Tools (2025)
-   └── Video Transcripts & Caption Plus extensions
-   └── AI chat about video content
-
-🕸️ dTON Explorer (2025)
-   └── TON Blockchain Query & Data Explorer
-`;
+        result = renderProjectsCommand();
         break;
 
       case "contact":
